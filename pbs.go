@@ -171,9 +171,11 @@ func qstat(jobId string) (qstatResult, error) {
 	if err != nil {
 		// This is being returned frequently
 		time.Sleep(10 * time.Second)
+		cmd := exec.Command("qstat", "-xf", "-F", "json", jobId)
 		out, err = cmd.CombinedOutput()
 		if err != nil {
 			time.Sleep(1 * time.Minute)
+			cmd := exec.Command("qstat", "-xf", "-F", "json", jobId)
 			out, err = cmd.CombinedOutput()
 			if err != nil {
 				// OK, now something appears to be wrong...
