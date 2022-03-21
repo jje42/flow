@@ -436,7 +436,7 @@ env | sort
 		os.MkdirAll(d, 0755)
 	}
 
-	content.WriteString(fmt.Sprintf("cat /flowdir/%s | sed s'/^/# SCRIPT: /'\n", filepath.Dir(scriptFile)))
+	content.WriteString(fmt.Sprintf("cat /flowdir/%s | sed s'/^/# SCRIPT: /'\n", filepath.Base(scriptFile)))
 
 	// Typically flowdir is inside a users home directory and this is
 	// automatically bound in, but it may not be and the -C option may be
