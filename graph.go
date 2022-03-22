@@ -474,7 +474,7 @@ func unique(xs []string) []string {
 
 func createScriptFile(scriptFile string, j *job) error {
 	content := j.Command()
-	if err := ioutil.WriteFile(scriptFile, []byte(content), 0664); err != nil {
+	if err := ioutil.WriteFile(scriptFile, []byte(content+"\n"), 0664); err != nil {
 		return fmt.Errorf("failed to write script content: %v", err)
 	}
 	return nil
