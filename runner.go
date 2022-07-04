@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"path/filepath"
 	"strconv"
 )
 
@@ -52,6 +53,7 @@ func NewLocalRunner() *LocalRunner {
 }
 
 func (r *LocalRunner) Run(cxt executionContext) error {
+	os.MkdirAll(filepath.Dir(cxt.job.Stdout), 0755)
 	w, err := os.Create(cxt.job.Stdout)
 	if err != nil {
 		return fmt.Errorf("failed to create stdout file: %s, %s", cxt.job.Stdout, err)
